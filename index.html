@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happy new year</title>
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-transform: uppercase;
+            
+        }
+        .container{
+            text-align: center;
+        }
+        .balloon{
+            background-color: yellow;
+            color: darkgray;
+            font-size: 36px;
+            padding: 29px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow:0px 5px 15px rgba(0, 0, 0, 0.1);
+            animation: floatAnimation 5s ease-in-out infinite alternate;
+            cursor: pointer; /* Add cursor pointer */
+        }
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #f00;
+            border-radius: 50%;
+            opacity: 0;
+            animation: explode 1s ease-out;
+        }
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(10);
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="balloon" onclick="fireworks()">🎆🎆🎉Happy New Year🎉🕺🏾🕺🏾</h1> <!-- Add onclick event -->
+
+    </div>
+    <script>
+        function fireworks(){
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 20; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.left = Math.random() * 100 + 'vw';
+                firework.style.top = Math.random() * 100 + 'vh';
+                container.appendChild(firework);
+            }
+             // Remove fireworks after animation
+             setTimeout(() => {
+                const fireworks = document.querySelectorAll('.firework');
+                fireworks.forEach(firework => firework.remove());
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
